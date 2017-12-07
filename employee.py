@@ -24,15 +24,36 @@ class Managers(Employee):
 
     bonus = 1.10
 
-    def __init__(self, first, last, emp_no, age, pay, department):
+    def __init__(self, first, last, emp_no, age, pay, employees=None ):
         super().__init__(first, last, emp_no, age, pay)
-        self.department = department
+        if employees is None:
+            self.employees = list()
+        else:
+            self.employees = employees
+
+    def add_emp(self, emp):
+        if emp not in self.employees:
+            self.employees.append(emp)
+
+
+    def remove_emp(self, emp):
+        if emp not in self.employees:
+            self.employees.remove(emp)
+
+    def list_emp(self):
+        for emp in self.employees:
+            print('THE EMPLOYEES ARE:\n %s \n' %emp.fullname())
+
 
 
 
 
 emp = Employee('sam','ghadri', '007', 28, 50000)
-mng = Managers('Tim','Jones', '100', 55, 80000, 'Back-End Developer')
+emp_1 = Employee('harry','walker', '008', 23, 50000)
+emp_2 = Employee('tony','ward', '009', 40, 50000)
+mng = Managers('Tim','Jones', '100', 55, 80000,[emp])
 
-print(mng.department)
 
+mng.add_emp(emp_1)
+mng.add_emp(emp_2)
+print(mng.list_emp())
