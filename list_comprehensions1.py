@@ -50,3 +50,4 @@ for col in colors:
         lst.append(s)
 print(lst)
 
+
